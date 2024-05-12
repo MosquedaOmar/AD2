@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        .contenedor {
+            background-color: #333;
+            padding: 10px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center; /* Centra los elementos */
+            align-items: center;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+        }
+        
+        nav a.activo {
+            background-color: #007bff;
+        }
+        
+        nav a:hover {
+            background-color: #555;
+        }
+
+        .buscar-form {
+            display: flex;
+            align-items: center;
+            margin-right: auto; /* Empuja el formulario hacia la izquierda */
+        }
+
+        .buscar-form input[type="text"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            margin-right: 5px;
+        }
+
+        .user-icon {
+            position: relative;
+        }
+
+        .user-icon i {
+            font-size: 28px; /* Ajusta el tamaño del icono */
+        }
+
+        .submenu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #333;
+            list-style: none;
+            padding: 0;
+            display: none;
+        }
+
+        .user-icon:hover .submenu {
+            display: block;
+        }
+
+        .submenu li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+        }
+
+        .submenu li a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <nav>
+            <a href="http://localhost/library/dashboard/">Inicio</a>
+            <a href="#">Genero</a>
+            <a href="#">Libros</a>
+            <a href="#">Revistas</a>
+            <div class="buscar-form">
+                <input type="text" placeholder="Buscar">
+                <button class="btn btn-outline-light">Buscar</button>
+            </div>
+            <div class="user-icon">
+                <i class="uil uil-user-circle"></i>
+                <ul class="submenu">
+                    <li><a href="#">Mis datos</a></li>
+                    <li><a href="#">Cerrar sesión</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>

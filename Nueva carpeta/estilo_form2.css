@@ -1,0 +1,41 @@
+    /* Estilos para el formulario de devolución */
+
+    .prestamo-form2 {
+        width: 20%; /* Ancho del formulario */
+        margin: 0 auto; /* Centrar horizontalmente */
+        background-color: #f4f4f4; /* Color de fondo */
+        padding: 15px; /* Espaciado interno */
+        border-radius: 5px; /* Bordes redondeados */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+    }
+    
+    /* Estilos para las etiquetas del formulario */
+    .prestamo-form2 label {
+        display: block; /* Hace que las etiquetas estén en líneas separadas */
+        margin-bottom: 5px; /* Espaciado inferior de las etiquetas */
+        font-weight: bold;
+    }
+    
+    /* Estilos para los campos de entrada del formulario */
+    .prestamo-form2 input[type="text"],
+    .prestamo-form2 input[type="date"],
+    .prestamo-form2 input[type="submit"] {
+        width: 90%; /* Ancho completo de los campos de entrada y el botón */
+        padding: 10px;
+        margin-bottom: 15px; /* Espaciado inferior de los campos de entrada y el botón */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    /* Estilos para el botón de envío del formulario */
+    .prestamo-form2 input[type="submit"] {
+        background-color: #4c7faf;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    /* Cambio de color al pasar el ratón sobre el botón */
+    .prestamo-form2 input[type="submit"]:hover {
+        background-color: #355a9b;
+    }
+    

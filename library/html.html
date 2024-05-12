@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <body>
+        <style>
+    .contenedor {
+        background-color: #333;
+        padding: 10px;
+    }
+    
+    nav {
+        display: flex;
+        justify-content: flex-end; /* Alinea los elementos al final del contenedor */
+    }
+    
+    nav a {
+        color: white;
+        text-decoration: none;
+        padding: 10px 15px;
+    }
+    
+    nav a.activo {
+        background-color: #007bff;
+    }
+    
+    nav a:hover {
+        background-color: #555;
+    }
+    
+    </style>
+</head>
+
+<div class="contenedor">
+			
+			<nav>
+				<a href="http://localhost/library/dashboard/">Inicio</a>
+				<a href="#">Genero</a>
+				<a href="#">Libros</a>
+				<a href="#">Revistas</a>
+				<a href="http://localhost/library/login" class="activo">Iniciar sesion</a>
+                
+                <input type="button" value="submit">
+			</nav>
+		</div>
+</body>
+</html>

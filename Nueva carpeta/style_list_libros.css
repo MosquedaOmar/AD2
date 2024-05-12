@@ -1,0 +1,8 @@
+.lista-container_libros {
+    max-width: 680px; /* Ajusta el ancho según tu preferencia */
+    margin: 20px auto; /* Centra el contenedor */
+    background-color: #fff; /* Fondo blanco */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}

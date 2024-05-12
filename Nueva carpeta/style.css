@@ -1,0 +1,69 @@
+body {
+    background-image: url('fondo.jpeg');
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir toda la página */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    margin: 0;
+    position: relative;
+}
+
+header {
+
+    background-color: whitesmoke;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+/* Estilos para los iconos de redes sociales */
+.social-icons {
+float: right;
+margin-top: 10px;
+}
+
+.social-icon {
+margin-right: 10px;
+font-size: 30px;
+text-decoration: none;
+display: inline-block;
+padding: 5px;
+border-radius: 50%;
+}
+
+/* Estilos específicos para cada red social */
+.youtube {
+color: #FF0000; /* Color de YouTube */
+}
+
+.facebook {
+color: #1877F2; /* Color de Facebook */
+}
+
+.instagram {
+color: #E4405F; /* Color de Instagram */
+}
+
+.twitter {
+color: #1DA1F2; /* Color de Twitter */
+}
+
+.custom-button {
+background-color: #4c7faf;
+color: #fff;
+padding: 10px 15px;
+border: none;
+border-radius: 5px;
+text-decoration: none; /* Quitar subrayado de enlace */
+margin-left: 20px;
+}
+
+.custom-button:hover {
+background-color: #355a9b; /* Cambio de color al pasar el ratón sobre el botón */
+}
