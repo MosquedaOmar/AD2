@@ -16,7 +16,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 body{
-background-image: url("/library/app/views/img/Abstract-blue-waves_2560x1600.jpg");
+background-image: url("/login/Abstract-blue-waves_2560x1600.jpg");
 font-family: 'Poppins', sans-serif;
 font-weight: 300;
 line-height: 1.7;
