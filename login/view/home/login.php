@@ -1,7 +1,7 @@
 <?php
     require_once("c://xampp/htdocs/login/view/head/head.php");
     if(!empty($_SESSION['usuario'])){
-        header("Location:panel_control.php");
+        header("Location:panel_control");
     }
 ?>
 
@@ -16,7 +16,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 body{
-background-image: url("/login/Abstract-blue-waves_2560x1600.jpg");
+background-image: url("/library/app/views/img/Abstract-blue-waves_2560x1600.jpg");
 font-family: 'Poppins', sans-serif;
 font-weight: 300;
 line-height: 1.7;
@@ -245,13 +245,13 @@ display: none;
                                     <div class="center-wrap">
                                         <div class="section text-center">
                                             <h4 class="mb-3 pb-3">Bienvenido</h4>
-                                            <form action="verificar.php" method="post"  autocomplete="off">
+                                            <form action="verificarAdmin.php" method="post"  autocomplete="off">
                                                 <div class="form-group">
-                                                    <input type="text" name="correo" id="admin_user" class="form-style" placeholder="Usuario administrador" required>
+                                                    <input type="text" name="admin_user" id="admin_user" class="form-style" placeholder="Usuario administrador" required>
                                                     <i class="input-icon uil uil-user"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
-                                                    <input type="password" name="contraseña" id="admin_password" class="form-style" placeholder="Contraseña administrador" required>
+                                                    <input type="password" name="admin_password" id="admin_password" class="form-style" placeholder="Contraseña administrador" required>
                                                     <i class="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                 <button type="submit" class="btn mt-4" name="submit_admin">Iniciar sesión</button>

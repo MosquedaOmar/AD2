@@ -23,6 +23,12 @@
             $statement->bindParam(":correo",$correo);
             return ($statement->execute()) ? $statement->fetch()['password'] : false;
         }
+
+        public function obtenerclaveAdmin($admin_users){
+            $statement = $this->PDO->prepare("SELECT password FROM administradores WHERE usuario = :administrador");
+            $statement->bindParam(":administrador",$admin_users);
+            return ($statement->execute()) ? $statement->fetch()['password'] : false;
+        }
     }
 
 ?>

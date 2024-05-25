@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
     body {
-    background-image: url("/login/Abstract-blue-waves_2560x1600.jpg");
+    background-image: url("/library/app/views/img/Abstract-blue-waves_2560x1600.jpg");
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
     line-height: 1.7;
@@ -102,17 +102,31 @@
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div id="form-container" class="form-container">
-          <h4 class="mb-4 pb-3">Formulario</h4>
-          <p>Recuerde rellenar con datos validos.</p>
+          <p>Por favor, asegúrate de ingresar datos válidos. El uso de información incorrecta o falsa puede resultar en la prohibición de préstamos de libros.</p>
           <form action="store.php" method="post" id="registro-form" autocomplete="off"> 
           <div class="form-group">
-            <input type="user" name="correo" id="correo" class="form-style" placeholder="Usuario" required>
+            <input type="text" name="nombre" id="nombre" class="form-style" placeholder="Nombre" required>
           </div>  
           <div class="form-group">
-            <input type="password" name="contraseña" id="contraseña" class="form-style" placeholder="Contraseña" required>
+            <input type="text" name="apellido" id="apellido" class="form-style" placeholder="Apellido" required>
           </div>
           <div class="form-group">
-            <input type="password" name="confirmarContraseña" id="confirmarContraseña" class="form-style" placeholder="Contraseña" required>
+            <input type="number" name="dni" id="dni" class="form-style" placeholder="DNI" required>
+          </div>
+          <div class="form-group">
+            <input type="number" name="telefono" id="telefono" class="form-style" placeholder="Telefono y/o Celular" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="correo" id="correo" class="form-style" placeholder="Correo Electronico" required>
+          </div>
+          <div class="form-group">
+            <input type="date" name="fechaNacimiento" id="fechaNacimiento" class="form-style" placeholder="Fecha de Nacimiento" required>
+          </div>
+          <div class="form-group">
+            <input type="user" name="usuario" id="usuario" class="form-style" placeholder="Usuario" required>
+          </div>
+          <div class="form-group">
+            <input type="password" name="contraseña" id="contraseña" class="form-style" placeholder="Contraseña" required>
           </div>
           <div class="btn-container">
             <a href="login.php" class="btn-volver mt-4" style="text-decoration: none;">Volver a login</a>
