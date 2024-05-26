@@ -26,6 +26,12 @@
             color: #c4c3ca;
         }
 
+        .navbar-dark .navbar-nav .nav-item {
+        margin-right: 30px; /* Aumenta esta cantidad para más separación */
+        margin-left: 40px;
+        }
+
+
         .boton {
             border-radius: 4px;
             height: 44px;
@@ -81,10 +87,10 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="#">Géneros</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Editar mi perfil</a>
-                            </li>
                         </ul>
+                        
+                        <a class="nav-link" href="#">Datos de mi perfil</a>
+ 
                         <a href="/login/view/home/logout" class="boton">Cerrar Sesión</a>
                     </div>
                     <?php endif ?>
