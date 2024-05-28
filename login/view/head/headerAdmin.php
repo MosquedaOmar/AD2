@@ -145,7 +145,7 @@ body {
                         <a href="#">Revistas</a>
                     </div>
                 </div>
-                <a href="/login/view/home/usuarios.php">Usuarios registrados</a>
+                <a href="/login/view/content/usuarios.php">Usuarios registrados</a>
                 <a href="#">Lista de préstamos</a>
                 <a href="#">Lista de devoluciones</a>
             </div>

@@ -54,6 +54,13 @@
             box-shadow: 0 8px 24px 0 rgba(16, 39, 112, .2);
             text-decoration: none;
         }
+        #searchInput {
+            margin-left: 60px;
+    background-color: #333333;
+    color: #ffffff;
+    border-color: #666666; /* Cambia este color según tus preferencias */
+    width: 400px; /* Ajusta este valor según tus necesidades */
+}
     </style>
 </head>
 <body>
@@ -61,7 +68,7 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Inicio</a>
+                    <a class="navbar-brand" href="http://localhost/login/view/home/panel_control">Inicio</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -76,17 +83,20 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Libros</a>
+                                <a class="nav-link active" aria-current="page" href="/login/view/content/libros.php">Libros</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Revistas</a>
+                                <a class="nav-link active" aria-current="page" href="/login/view/content/revistas.php">Revistas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Autor</a>
+                                <a class="nav-link active" aria-current="page" href="/login/view/content/autor.php">Autor</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Géneros</a>
+                                <a class="nav-link active" aria-current="page" href="/login/view/content/genero.php">Géneros</a>
                             </li>
+                            <form class="d-flex" id="searchForm">
+                                  <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" id="searchInput">
+                            </form>
                         </ul>
                         
                         <a class="nav-link" href="#">Datos de mi perfil</a>
@@ -98,31 +108,3 @@
             </nav>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function loadContent(contentType) {
-            const content = document.getElementById('content');
-            let url = '';
-
-            switch(contentType) {
-                case 'libros':
-                    url = '/login/view/content/libros.php';
-                    break;
-                case 'revistas':
-                    url = '/login/view/content/revistas.php';
-                    break;
-                case 'autor':
-                    url = '/login/view/content/autor.php';
-                    break;
-                case 'generos':
-                    url = '/login/view/content/generos.php';
-                    break;
-            }
-
-            fetch(url)
-                .then(response => response.text())
-                .then(data => content.innerHTML = data)
-                .catch(error => console.error('Error cargando el contenido:', error));
-        }
-    </script>
