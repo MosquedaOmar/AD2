@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
 
         // Redirigir de nuevo a la página de lista de usuarios después de la actualización
-        header("Location: usuarios.php");
+        header("Location: /login/view/content/usuarios.php");
         exit();
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();

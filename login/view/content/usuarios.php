@@ -1,7 +1,7 @@
 <?php
 require_once 'sesionAdmin.php';
 require_once ('c://xampp/htdocs/login/config/db.php'); // Incluye el archivo de la clase db
-require_once("c://xampp/htdocs/login/view/head/headerAdmin.php");
+
 
 try {
     // Instanciamos la clase db
@@ -17,7 +17,7 @@ try {
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
-
+require_once("c://xampp/htdocs/login/view/head/headerAdmin.php");
 
 ?>
 
