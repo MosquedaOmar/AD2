@@ -106,7 +106,7 @@
                             </form>
                         </ul>
                         
-                        <a class="nav-link" style="font-size: 12px;" href="#">Datos de mi perfil</a>
+                        <a class="nav-link" style="font-size: 12px;" href="/login/view/perfiles/perfil.php">Datos de mi perfil</a>
  
                         <a href="/login/view/home/logout" class="boton">Cerrar Sesión</a>
                     </div>
