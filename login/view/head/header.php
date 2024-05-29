@@ -20,6 +20,7 @@
 
         .navbar-dark .navbar-nav .nav-link {
             color: #ffeba7;
+            font
         }
 
         .navbar-dark .navbar-nav .nav-link:hover {
@@ -27,15 +28,18 @@
         }
 
         .navbar-dark .navbar-nav .nav-item {
-        margin-right: 30px; /* Aumenta esta cantidad para más separación */
-        margin-left: 40px;
+        margin-right: 5px; /* Aumenta esta cantidad para más separación */
+        margin-left: 20px;
+        }
+        .navbar-nav .nav-link {
+        font-size: 12px; /* Ajusta el tamaño de la fuente según tus preferencias */
         }
 
 
         .boton {
             border-radius: 4px;
-            height: 44px;
-            font-size: 13px;
+            height: 30px;
+            font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
             padding: 0 30px;
@@ -56,11 +60,14 @@
         }
         #searchInput {
             margin-left: 60px;
-    background-color: #333333;
-    color: #ffffff;
-    border-color: #666666; /* Cambia este color según tus preferencias */
-    width: 400px; /* Ajusta este valor según tus necesidades */
-}
+            background-color: #333333;
+             color: #ffffff;
+             border-color: #666666; /* Cambia este color según tus preferencias */
+            width: 300px; /* Ajusta este valor según tus necesidades */
+        }
+        .navbar-brand {
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -99,7 +106,7 @@
                             </form>
                         </ul>
                         
-                        <a class="nav-link" href="#">Datos de mi perfil</a>
+                        <a class="nav-link" style="font-size: 12px;" href="#">Datos de mi perfil</a>
  
                         <a href="/login/view/home/logout" class="boton">Cerrar Sesión</a>
                     </div>

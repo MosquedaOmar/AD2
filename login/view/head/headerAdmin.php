@@ -45,6 +45,7 @@ body {
             flex-grow: 1; /* Permite que el div se expanda para que los elementos se centren */
             display: flex;
             justify-content: center; /* Centrar horizontalmente las opciones */
+            font-size: 12px;
         }
 
         .navbar-links a {
@@ -85,6 +86,7 @@ body {
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
+            font-size: 10px;
         }
 
         .boton:hover {
@@ -96,11 +98,12 @@ body {
     display: flex;
     align-items: center;
     margin-right: 20px; /* Separación del borde derecho */
-    margin-top: 10px; /* Ajuste: separación superior */
+    margin-top: 0px; /* Ajuste: separación superior */
 }
 
 .navbar-user span {
     margin-right: 10px; /* Ajuste: separación entre texto y icono de usuario */
+    font-size: 12px;
 }
 
 .navbar-user i {

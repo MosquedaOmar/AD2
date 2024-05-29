@@ -271,9 +271,3 @@ display: none;
         </div>
     </div>
 </main>
-
-
-
-<?php
-    require_once("c://xampp/htdocs/login/view/head/footer.php");
-?>

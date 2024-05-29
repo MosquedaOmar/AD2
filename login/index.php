@@ -27,13 +27,13 @@ if (!empty($_SESSION['usuario'])) {
 }
 
 .welcome-banner h1 {
-    font-size: 2.5em;
+    font-size: 20px;
     margin-bottom: 20px;
     color: #333;
 }
 
 .welcome-banner p {
-    font-size: 1.2em;
+    font-size: 12px;
     color: #666;
 }
 </style>

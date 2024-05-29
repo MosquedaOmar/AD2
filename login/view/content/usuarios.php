@@ -1,5 +1,7 @@
 <?php
-require_once 'c://xampp/htdocs/login/config/db.php'; // Incluye el archivo de la clase db
+require_once 'sesionAdmin.php';
+require_once ('c://xampp/htdocs/login/config/db.php'); // Incluye el archivo de la clase db
+require_once("c://xampp/htdocs/login/view/head/headerAdmin.php");
 
 try {
     // Instanciamos la clase db
@@ -16,7 +18,7 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
-require_once("c://xampp/htdocs/login/view/head/headerAdmin.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +34,7 @@ require_once("c://xampp/htdocs/login/view/head/headerAdmin.php");
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin: 20px auto;
-            max-width: 1500px;
+            max-width: 1000px;
             background-color: #f2f2f2; /* Color de fondo gris claro */
             padding: 20px; /* Añadido padding para espaciar el contenido del contenedor */
         }
@@ -44,12 +46,16 @@ require_once("c://xampp/htdocs/login/view/head/headerAdmin.php");
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            font-size: 12px;
         }
         th {
             background-color: #f2f2f2;
         }
         tr:hover {
             background-color: #f2f2f2;
+        }
+        h2{
+            font-size: 18px;
         }
     </style>
 </head>

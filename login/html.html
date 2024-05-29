@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+body {
+    background-image: url("Abstract-blue-waves_2560x1600.jpg");
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+font-weight: 300;
+    font-family: Arial, sans-serif;
+    background-color: #0b0e14;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+font-weight: 300;
+line-height: 1.7;
+color: #ffeba7;
+background-color: #1f2029;
+}
+
+.login-container {
+    text-align: center;
+    color: #ffeba7;
+}
+
+.login-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.login-header span {
+    margin: 0 10px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+.login-box {
+    background-color: #2b2e38;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 300px;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #ffeba7;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #2b2e38;
+    border-radius: 4px;
+    background-color: #000; /* Fondo negro */
+    color: #e2e2e2; /* Texto blanco */
+}
+
+/* Estilos para el placeholder */
+.input-group input::placeholder {
+    color: #888; /* Cambia el color del placeholder a gris */
+}
+.input-group input:focus {
+    outline: none; /* Quita el contorno predeterminado del enfoque */
+    border-color: #2b2e38; /* Cambia el color del borde en el estado de enfoque */
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-group button {
+    background-color: #ffeba7;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 48%;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 15px;
+    color: #ffeba7;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <span>Invitado</span>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+            <span>Admin</span>
+        </div>
+        <div class="login-box">
+            <h2>Bienvenido</h2>
+            <form>
+                <div class="input-group">
+                 
+                    <input type="text" id="username" placeholder="Usuario" name="username" required>
+                </div>
+                <div class="input-group">
+                 
+                    <input type="password" id="password" placeholder="Contraseña" name="password" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit">Iniciar Sesión</button>
+                    <button type="button">Registrarse</button>
+                </div>
+                <a href="#" class="forgot-password">¿Olvidó su contraseña?</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

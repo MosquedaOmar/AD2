@@ -1,5 +1,7 @@
 <?php
-require_once 'c://xampp/htdocs/login/config/db.php'; // Incluye el archivo de la clase db
+require_once 'sesionVerifique.php';
+require_once ('c://xampp/htdocs/login/config/db.php'); // Incluye el archivo de la clase db
+require_once("c://xampp/htdocs/login/view/head/header.php");
 
 try {
     // Instanciamos la clase db
@@ -16,7 +18,7 @@ try {
     echo "Error: " . $e->getMessage();
 }
 
-require_once("c://xampp/htdocs/login/view/head/header.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +41,7 @@ require_once("c://xampp/htdocs/login/view/head/header.php");
         h2 {
             color: #ffeba7; /* Color de las letras para el encabezado h2 */
             display: inline-block; /* Hace que el título y el botón estén en la misma línea */
+            font-size: 14px;
         }
         .btn-ver-lista {
             background-color: #ffeba7; /* Color de fondo del botón */
@@ -62,7 +65,7 @@ require_once("c://xampp/htdocs/login/view/head/header.php");
         <?php foreach ($autores as $autor): ?>
             <div>
                 <h2><?= htmlspecialchars($autor['nombre']) ?></h2>
-                <a href="/login/view/content/publicaciones.php?autor=<?= urlencode($autor['nombre']) ?>" class="btn-ver-lista">Ver Lista Completa</a>
+                <a href="/login/view/content/publicaciones.php?autor=<?= urlencode($autor['nombre']) ?>" class="btn-ver-lista" style="font-size: 10px;" >Ver Lista Completa</a>
             </div>
         <?php endforeach; ?>
     </div>

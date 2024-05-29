@@ -1,5 +1,6 @@
 <?php
-require_once 'c://xampp/htdocs/login/config/db.php'; // Incluye el archivo de la clase db
+require_once 'sesionVerifique.php';
+require_once ('c://xampp/htdocs/login/config/db.php'); // Incluye el archivo de la clase db
 
 try {
     // Instanciamos la clase db
@@ -49,9 +50,9 @@ require_once("c://xampp/htdocs/login/view/head/header.php");
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin: 20px auto;
-            max-width: 1500px;
+            max-width: 800px;
             background-color: #2b2e38; /* Color de fondo gris claro */
-            padding: 20px; /* Añadido padding para espaciar el contenido del contenedor */
+            padding: 10px; /* Añadido padding para espaciar el contenido del contenedor */
         }
         h2 {
             color: #ffeba7; /* Color de las letras para el encabezado h2 */
@@ -64,6 +65,7 @@ require_once("c://xampp/htdocs/login/view/head/header.php");
             padding: 8px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            font-size: 12px;
         }
         th {
             background-color: #1f2029;
@@ -71,6 +73,9 @@ require_once("c://xampp/htdocs/login/view/head/header.php");
         }
         tr:hover {
             background-color: #f2f2f2;
+        }
+        h2{
+            font-size: 18px;
         }
     </style>
 </head>
