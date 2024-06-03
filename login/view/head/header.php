@@ -75,7 +75,7 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="http://localhost/login/view/home/panel_control">Inicio</a>
+                    <a class="navbar-brand" href="/login/view/home/panel_control">Inicio</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -101,8 +101,8 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/login/view/content/genero.php">Géneros</a>
                             </li>
-                            <form class="d-flex" id="searchForm">
-                                  <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" id="searchInput">
+                            <form class="d-flex" action="/login/view/search/results.php" method="GET">
+                                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" id="searchInput" name="query">
                             </form>
                         </ul>
                         
@@ -115,3 +115,4 @@
             </nav>
         </div>
     </div>
+

@@ -10,20 +10,39 @@ try {
     // Conexión a la base de datos
     $conn = $database->conexion();
 
-    // Consulta SQL para obtener solo las revistas con su género, autor y editorial
+    // Paginación
+    $results_per_page = 10; // Número de revistas por página
+    $sql = "SELECT COUNT(*) AS total FROM libros WHERE id_tipo = 2"; // Contar total de revistas
+    $stmt = $conn->query($sql);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $total_results = $row['total'];
+    $total_pages = ceil($total_results / $results_per_page); // Total de páginas
+
+    // Obtiene la página actual
+    if (!isset($_GET['page']) || !is_numeric($_GET['page']) || $_GET['page'] < 1) {
+        $page = 1;
+    } else if ($_GET['page'] > $total_pages) {
+        $page = $total_pages;
+    } else {
+        $page = $_GET['page'];
+    }
+
+    // Calcula el inicio del resultado de la consulta
+    $start_limit = ($page - 1) * $results_per_page;
+
+    // Consulta SQL para obtener las revistas por página
     $sql = "SELECT l.id_libro, l.titulo, g.nombre AS genero, a.nombre AS autor, e.nombre AS editorial
             FROM libros l
             INNER JOIN genero g ON l.id_genero = g.id_genero
             INNER JOIN autor a ON l.id_autor = a.id_autor
             INNER JOIN editorial e ON l.id_editorial = e.id_editorial
-            WHERE l.id_tipo = 2"; // 2 es el id_tipo para las revistas
+            WHERE l.id_tipo = 2
+            LIMIT $start_limit, $results_per_page";
     $stmt = $conn->query($sql);
     $revistas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -57,10 +76,34 @@ try {
             background-color: #1f2029;
         }
         tr:hover {
-            background-color: #f2f2f2;
+            background-color: #ffeba7; /* Color del texto inicial */
+            color: #000000; /* Color del texto al pasar el mouse */
         }
-        h2{
+        h2 {
             font-size: 18px;
+        }
+        /* Estilos CSS para la paginación */
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+        }
+        .pagination a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            color: #fff;
+            background-color: #1f2029;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+        .pagination a.active {
+            background-color: #ffeba7;
+            color: #1f2029;
         }
     </style>
 </head>
@@ -76,13 +119,21 @@ try {
             </tr>
             <?php foreach ($revistas as $revista): ?>
                 <tr>
-                    <td><?= $revista['titulo'] ?></td>
-                    <td><?= $revista['genero'] ?></td>
-                    <td><?= $revista['autor'] ?></td>
-                    <td><?= $revista['editorial'] ?></td>
+                    <td><?= htmlspecialchars($revista['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($revista['genero'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($revista['autor'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($revista['editorial'], ENT_QUOTES, 'UTF-8') ?></td>
                 </tr>
             <?php endforeach; ?>
         </table>
+    </div>
+    <!-- Paginación -->
+    <div class="pagination-container">
+        <div class="pagination">
+            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                <a href="?page=<?php echo $i; ?>" class="<?php if ($i == $page) echo 'active'; ?>"><?php echo $i; ?></a>
+            <?php endfor; ?>
+        </div>
     </div>
 </body>
 </html>

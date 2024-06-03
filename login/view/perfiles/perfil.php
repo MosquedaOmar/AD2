@@ -18,9 +18,9 @@ try {
     $correo_usuario = $_SESSION['usuario'];
 
     // Consulta SQL para obtener los datos del usuario actual
-    $sql = "SELECT * FROM usuarios WHERE correo = :correo";
+    $sql = "SELECT * FROM usuarios WHERE usuario = :usuarios";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':correo', $correo_usuario);
+    $stmt->bindParam(':usuarios', $correo_usuario);
     $stmt->execute();
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -176,6 +176,13 @@ require_once("c://xampp/htdocs/login/view/head/header.php");
                     <td>
                         <span class="view-field"><?= $usuario['telefono'] ?></span>
                         <input type="text" name="telefono" class="edit-input" value="<?= $usuario['telefono'] ?>">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Correo</th>
+                    <td>
+                        <span class="view-field"><?= $usuario['correo'] ?></span>
+                        <input type="text" name="correo" class="edit-input" value="<?= $usuario['correo'] ?>">
                     </td>
                 </tr>
                 <tr>

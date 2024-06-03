@@ -221,7 +221,7 @@ display: none;
                                             <h4 class="mb-4 pb-3">Bienvenido</h4>
                                             <form action="verificar.php" method="post"  autocomplete="off">
                                                 <div class="form-group">
-                                                    <input type="text" name="correo" id="user" class="form-style" placeholder="Usuario" required>
+                                                    <input type="text" name="user" id="user" class="form-style" placeholder="Usuario" required>
                                                     <i class="input-icon uil uil-user"></i>
                                                 </div>
                                                 <div class="form-group mt-2">
@@ -231,7 +231,7 @@ display: none;
                                                 <button type="submit" class="btn mt-4" name="submit_login">Iniciar sesión</button>
                                                 <!-- Agregar el elemento <p> para mostrar el mensaje de error -->
                                                 <p id="error-msg" class="error-msg">Por favor complete todos los campos.</p>
-                                                <a href="http://localhost/login/view/home/signup.php" class="btn mt-4">Registrarse</a>
+                                                <a href="/login/view/home/signup.php" class="btn mt-4">Registrarse</a>
                                                 <br>
                                                 <br>
                                                 <!-- Eliminar el mensaje de error original -->

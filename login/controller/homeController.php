@@ -13,11 +13,17 @@
         }
 
         // Método para guardar un nuevo usuario.
-        public function guardarUsuario($correo, $contraseña) {
+        public function guardarUsuario($correo, $contraseña, $nombre, $apellido, $dni, $telefono, $fechaNacimiento, $usuario) {
             // Llama al método agregarNuevoUsuario del modelo, después de limpiar y encriptar los datos.
             $valor = $this->MODEL->agregarNuevoUsuario(
                 $this->limpiarcorreo($correo),
-                $this->encriptarcontraseña($this->limpiarcadena($contraseña))
+                $this->encriptarcontraseña($this->limpiarcadena($contraseña)),
+                $this->limpiarcadena($nombre),
+                $this->limpiarcadena($apellido),
+                $this->limpiarcadena($dni),
+                $this->limpiarcadena($telefono),
+                $fechaNacimiento,
+                $this->limpiarcadena($usuario)
             );
             // Retorna el valor obtenido del método del modelo.
             return $valor;
@@ -54,9 +60,9 @@
         }
 
         // Método para verificar un usuario.
-        public function verificarusuario($correo, $contraseña) {
+        public function verificarusuario($usuario, $contraseña) {
             // Obtiene la clave encriptada almacenada en la base de datos para el correo proporcionado.
-            $keydb = $this->MODEL->obtenerclave($correo);
+            $keydb = $this->MODEL->obtenerclave($usuario);
             // Verifica si la contraseña proporcionada coincide con la clave encriptada almacenada.
             return (password_verify($contraseña, $keydb)) ? true : false;
         }

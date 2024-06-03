@@ -71,8 +71,13 @@ require_once("c://xampp/htdocs/login/view/head/header.php");
             background-color: #1f2029;
             color: #ffeba7;
         }
+        tr {
+            color: #ffeba7;
+            transition: background-color 0.3s ease, color 0.3s ease; /* Añadido transición para suavizar el cambio de color */
+        }
         tr:hover {
-            background-color: #f2f2f2;
+            background-color: #ffeba7; /* Color del texto inicial */
+            color: #000000; /* Color del texto al pasar el mouse */
         }
         h2{
             font-size: 18px;

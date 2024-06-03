@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2024 a las 04:14:47
+-- Tiempo de generación: 03-06-2024 a las 05:10:49
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -57,8 +57,8 @@ CREATE TABLE `afiliados` (
 --
 
 INSERT INTO `afiliados` (`id_afiliado`, `id`, `Estado_Afiliacion`) VALUES
-(1, 8, 'Activo'),
-(2, 1, 'Inactivo');
+(1, 8, 'Inactivo'),
+(2, 1, 'Activo');
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,37 @@ CREATE TABLE `autor` (
 --
 
 INSERT INTO `autor` (`id_autor`, `nombre`) VALUES
-(1, 'kendall & kendall');
+(1, 'kendall & kendall'),
+(2, 'Ken Thompson'),
+(3, 'Dennis Ritchie'),
+(4, 'Brian Kernighan'),
+(5, 'Bjarne Stroustrup'),
+(6, 'James Gosling'),
+(7, 'Linus Torvalds'),
+(8, 'Donald Knuth'),
+(9, 'Martin Fowler'),
+(10, 'Erich Gamma'),
+(11, 'Richard Helm'),
+(12, 'Ralph Johnson'),
+(13, 'John Vlissides'),
+(14, 'Grady Booch'),
+(15, 'Robert C. Martin'),
+(16, 'Kent Beck'),
+(17, 'Ward Cunningham'),
+(18, 'Martin Fowler'),
+(19, 'Uncle Bob'),
+(20, 'Herbert Schildt'),
+(21, 'Kathy Sierra'),
+(22, 'Bert Bates'),
+(23, 'Joshua Bloch'),
+(24, 'Bruce Eckel'),
+(25, 'Scott Meyers'),
+(26, 'Steve McConnell'),
+(27, 'Andrew S. Tanenbaum'),
+(28, 'David Flanagan'),
+(29, 'Yukihiro Matsumoto'),
+(30, 'Larry Wall'),
+(31, 'Brendan Eich');
 
 -- --------------------------------------------------------
 
@@ -117,6 +147,43 @@ CREATE TABLE `editorial` (
   `nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Volcado de datos para la tabla `editorial`
+--
+
+INSERT INTO `editorial` (`id_editorial`, `nombre`) VALUES
+(1, 'Addison-Wesley'),
+(2, 'O\'Reilly Media'),
+(3, 'Pearson'),
+(4, 'Prentice Hall'),
+(5, 'McGraw-Hill'),
+(6, 'Springer'),
+(7, 'Wiley'),
+(8, 'Packt Publishing'),
+(9, 'Apress'),
+(10, 'Manning Publications'),
+(11, 'MIT Press'),
+(12, 'Cambridge University Press'),
+(13, 'Oxford University Press'),
+(14, 'CRC Press'),
+(15, 'Elsevier'),
+(16, 'Cengage Learning'),
+(17, 'Focal Press'),
+(18, 'Morgan Kaufmann'),
+(19, 'Taylor & Francis'),
+(20, 'IGI Global'),
+(21, 'Johns Hopkins University Press'),
+(22, 'Harvard University Press'),
+(23, 'Stanford University Press'),
+(24, 'University of Chicago Press'),
+(25, 'Yale University Press'),
+(26, 'University of California Press'),
+(27, 'University of Texas Press'),
+(28, 'MIT Technology Review'),
+(29, 'IEEE Press'),
+(30, 'University of Washington Press'),
+(31, 'Rutgers University Press');
+
 -- --------------------------------------------------------
 
 --
@@ -133,7 +200,37 @@ CREATE TABLE `genero` (
 --
 
 INSERT INTO `genero` (`id_genero`, `nombre`) VALUES
-(1, 'informatica');
+(1, 'informatica'),
+(2, 'Programación'),
+(3, 'Algoritmos'),
+(4, 'Bases de Datos'),
+(5, 'Redes'),
+(6, 'Sistemas Operativos'),
+(7, 'Inteligencia Artificial'),
+(8, 'Desarrollo Web'),
+(9, 'Seguridad Informática'),
+(10, 'Ciencia de Datos'),
+(11, 'Ingeniería de Software'),
+(12, 'Métodos Formales'),
+(13, 'Teoría de la Computación'),
+(14, 'Robótica'),
+(15, 'Criptografía'),
+(16, 'Análisis de Datos'),
+(17, 'Big Data'),
+(18, 'Machine Learning'),
+(19, 'Cloud Computing'),
+(20, 'Ciberseguridad'),
+(21, 'Blockchain'),
+(22, 'Bioinformática'),
+(23, 'Computación Cuántica'),
+(24, 'Realidad Aumentada'),
+(25, 'Realidad Virtual'),
+(26, 'IoT (Internet of Things)'),
+(27, 'DevOps'),
+(28, 'Computación Gráfica'),
+(29, 'Lenguajes de Programación'),
+(30, 'Compiladores'),
+(31, 'Desarrollo Móvil');
 
 -- --------------------------------------------------------
 
@@ -146,6 +243,42 @@ CREATE TABLE `inventario` (
   `id_libro` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `inventario`
+--
+
+INSERT INTO `inventario` (`id_inventario`, `id_libro`, `cantidad`) VALUES
+(1, 1, 10),
+(2, 2, 8),
+(3, 3, 7),
+(4, 4, 9),
+(5, 5, 6),
+(6, 6, 12),
+(7, 7, 10),
+(8, 8, 11),
+(9, 9, 5),
+(10, 10, 10),
+(11, 11, 4),
+(12, 12, 9),
+(13, 13, 3),
+(14, 14, 8),
+(15, 15, 6),
+(16, 16, 7),
+(17, 17, 8),
+(18, 18, 6),
+(19, 19, 11),
+(20, 20, 9),
+(21, 21, 4),
+(22, 22, 5),
+(23, 23, 3),
+(24, 24, 6),
+(25, 25, 10),
+(26, 26, 9),
+(27, 27, 7),
+(28, 28, 6),
+(29, 29, 5),
+(30, 30, 8);
 
 -- --------------------------------------------------------
 
@@ -163,6 +296,72 @@ CREATE TABLE `libros` (
   `id_autor` int(11) NOT NULL,
   `id_editorial` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `libros`
+--
+
+INSERT INTO `libros` (`id_libro`, `titulo`, `cantidad`, `id_tipo`, `isbn`, `id_genero`, `id_autor`, `id_editorial`) VALUES
+(1, 'The C Programming Language', 10, 1, '978-0131103627', 2, 3, 4),
+(2, 'Introduction to Algorithms', 8, 1, '978-0262033848', 3, 8, 6),
+(3, 'Database System Concepts', 7, 1, '978-0073523323', 4, 10, 5),
+(4, 'Computer Networks', 9, 1, '978-0132126953', 5, 27, 1),
+(5, 'Operating System Concepts', 6, 1, '978-1118063330', 6, 28, 7),
+(6, 'Artificial Intelligence: A Modern Approach', 12, 1, '978-0136042594', 7, 14, 1),
+(7, 'HTML and CSS: Design and Build Websites', 10, 1, '978-1118008188', 8, 31, 8),
+(8, 'Hacking: The Art of Exploitation', 11, 1, '978-1593271442', 9, 7, 9),
+(9, 'Data Science for Business', 5, 1, '978-1449361327', 10, 19, 2),
+(10, 'Clean Code: A Handbook of Agile Software Craftsmanship', 10, 1, '978-0132350884', 11, 15, 1),
+(11, 'Formal Methods: An Appetizer', 4, 1, '978-1848003227', 12, 16, 11),
+(12, 'Introduction to the Theory of Computation', 9, 1, '978-1133187790', 13, 17, 4),
+(13, 'Introduction to Robotics: Mechanics and Control', 3, 1, '978-0201543612', 14, 18, 5),
+(14, 'Applied Cryptography: Protocols, Algorithms, and Source Code in C', 8, 1, '978-1119096726', 15, 20, 7),
+(15, 'Data Analysis with Open Source Tools', 6, 1, '978-1449307172', 16, 22, 2),
+(16, 'Big Data: Principles and best practices of scalable real-time data systems', 7, 1, '978-1617290343', 17, 23, 10),
+(17, 'Pattern Recognition and Machine Learning', 8, 1, '978-0387310732', 18, 24, 6),
+(18, 'Architecting the Cloud: Design Decisions for Cloud Computing Service Models', 6, 1, '978-1118617618', 19, 25, 3),
+(19, 'The Web Application Hacker\'s Handbook', 11, 1, '978-1118026472', 20, 26, 8),
+(20, 'Mastering Blockchain: Unlocking the Power of Cryptocurrencies and Smart Contracts', 9, 1, '978-1788839044', 21, 29, 7),
+(21, 'Bioinformatics: Sequence and Genome Analysis', 4, 1, '978-0879697129', 22, 30, 9),
+(22, 'Quantum Computing: A Gentle Introduction', 5, 1, '978-0262015066', 23, 12, 6),
+(23, 'Augmented Reality: Principles and Practice', 3, 1, '978-0321883575', 24, 13, 5),
+(24, 'Virtual Reality Technology', 6, 1, '978-0471360896', 25, 14, 7),
+(25, 'Internet of Things: A Hands-On Approach', 10, 1, '978-0996025515', 26, 15, 2),
+(26, 'The DevOps Handbook', 9, 1, '978-1942788003', 27, 16, 10),
+(27, 'Computer Graphics: Principles and Practice', 7, 1, '978-0321399526', 28, 18, 3),
+(28, 'Programming Language Pragmatics', 6, 1, '978-0123745149', 29, 11, 4),
+(29, 'Compilers: Principles, Techniques, and Tools', 5, 1, '978-0321486813', 30, 12, 6),
+(30, 'Android Programming: The Big Nerd Ranch Guide', 8, 1, '978-0134171456', 31, 13, 8),
+(31, 'Revista de Informática', 5, 2, '978-1234567891', 1, 1, 1),
+(32, 'Programación Avanzada', 10, 2, '978-1234567892', 2, 2, 2),
+(33, 'Algoritmos y Estructuras de Datos', 7, 2, '978-1234567893', 3, 3, 3),
+(34, 'Bases de Datos Modernas', 8, 2, '978-1234567894', 4, 4, 4),
+(35, 'Redes de Computadoras', 6, 2, '978-1234567895', 5, 5, 5),
+(36, 'Sistemas Operativos en Profundidad', 9, 2, '978-1234567896', 6, 6, 6),
+(37, 'Inteligencia Artificial Aplicada', 12, 2, '978-1234567897', 7, 7, 7),
+(38, 'Desarrollo Web Avanzado', 10, 2, '978-1234567898', 8, 8, 8),
+(39, 'Seguridad Informática', 11, 2, '978-1234567899', 9, 9, 9),
+(40, 'Ciencia de Datos', 5, 2, '978-1234567800', 10, 10, 10),
+(41, 'Ingeniería de Software', 10, 2, '978-1234567801', 11, 11, 11),
+(42, 'Métodos Formales en Computación', 4, 2, '978-1234567802', 12, 12, 12),
+(43, 'Teoría de la Computación', 9, 2, '978-1234567803', 13, 13, 13),
+(44, 'Robótica Moderna', 3, 2, '978-1234567804', 14, 14, 14),
+(45, 'Criptografía y Seguridad', 8, 2, '978-1234567805', 15, 15, 15),
+(46, 'Análisis de Datos', 6, 2, '978-1234567806', 16, 16, 16),
+(47, 'Big Data', 7, 2, '978-1234567807', 17, 17, 17),
+(48, 'Machine Learning', 8, 2, '978-1234567808', 18, 18, 18),
+(49, 'Cloud Computing', 6, 2, '978-1234567809', 19, 19, 19),
+(50, 'Ciberseguridad', 11, 2, '978-1234567810', 20, 20, 20),
+(51, 'Blockchain y Criptomonedas', 9, 2, '978-1234567811', 21, 21, 21),
+(52, 'Bioinformática', 4, 2, '978-1234567812', 22, 22, 22),
+(53, 'Computación Cuántica', 5, 2, '978-1234567813', 23, 23, 23),
+(54, 'Realidad Aumentada', 3, 2, '978-1234567814', 24, 24, 24),
+(55, 'Realidad Virtual', 6, 2, '978-1234567815', 25, 25, 25),
+(56, 'IoT: Internet of Things', 10, 2, '978-1234567816', 26, 26, 26),
+(57, 'DevOps', 9, 2, '978-1234567817', 27, 27, 27),
+(58, 'Computación Gráfica', 7, 2, '978-1234567818', 28, 28, 28),
+(59, 'Lenguajes de Programación', 6, 2, '978-1234567819', 29, 29, 29),
+(60, 'Compiladores', 5, 2, '978-1234567820', 30, 30, 30);
 
 -- --------------------------------------------------------
 
@@ -220,7 +419,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `correo`, `password`, `nombre`, `apellido`, `dni`, `telefono`, `fecha_nacimiento`, `usuario`) VALUES
-(1, 'leandro@hotmail.com', '$2y$10$A/nIdwqxKyXQz7p/03AukOScgWH9fWnrPpZJ8XNot6J//RLp09PLa', 'Leandro', 'andrew', '23540430', '3704544564', '0000-00-00', 'Lean29'),
+(1, 'leandro@hotmail.com', '$2y$10$hz4fz4FcTO012xuGckWr8uze.6mhWmn12rH.Qquk/LtMawX9IKe0y', 'Leandro', 'andrew', '23540430', '3704544564', '0000-00-00', 'Lean29'),
 (8, 'omar@hotmail.com', '$2y$10$A/nIdwqxKyXQz7p/03AukOScgWH9fWnrPpZJ8XNot6J//RLp09PLa', 'Omar', 'Mosqueda', '39721640', '3704650413', '1996-08-13', 'Mosqueda23');
 
 --
@@ -342,7 +541,7 @@ ALTER TABLE `afiliados`
 -- AUTO_INCREMENT de la tabla `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_autor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `devoluciones`
@@ -360,25 +559,25 @@ ALTER TABLE `direcciones`
 -- AUTO_INCREMENT de la tabla `editorial`
 --
 ALTER TABLE `editorial`
-  MODIFY `id_editorial` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_editorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`
 --
 ALTER TABLE `inventario`
-  MODIFY `id_inventario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_inventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `libros`
 --
 ALTER TABLE `libros`
-  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `prestamos`

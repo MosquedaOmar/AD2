@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 <style>
     body {
-    background-image: url("/library/app/views/img/Abstract-blue-waves_2560x1600.jpg");
+    background-image: url("/login/Abstract-blue-waves_2560x1600.jpg");
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
     line-height: 1.7;
@@ -127,6 +127,9 @@
           </div>
           <div class="form-group">
             <input type="password" name="contraseña" id="contraseña" class="form-style" placeholder="Contraseña" required>
+          </div>
+          <div class="form-group">
+            <input type="password" name="confirmarContraseña" id="confirmarContraseña" class="form-style" placeholder="Confirmar Contraseña" required>
           </div>
           <div class="btn-container">
             <a href="login.php" class="btn-volver mt-4" style="text-decoration: none;">Volver a login</a>
