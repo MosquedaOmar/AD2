@@ -236,7 +236,7 @@ display: none;
                                                 <br>
                                                 <!-- Eliminar el mensaje de error original -->
                                                 <!-- <p class="error escondido">X Error al iniciar sesión X</p> -->
-                                                <p class="mb-0 mt-4 text-center"><a href="" class="link">¿Olvidó su contraseña?</a></p>
+                                                <p class="mb-0 mt-4 text-center"><a href="/login/view/recovery/recovery.php" class="link">¿Olvidó su contraseña?</a></p>
                                             </form>
                                         </div>
                                     </div>

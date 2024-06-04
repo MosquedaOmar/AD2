@@ -14,6 +14,7 @@ if(empty($_SESSION['usuario']) || $_SESSION['tipo_usuario'] != 'admin'){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
 body {
     background-image: url("/login/fondo.jpeg");  
@@ -143,14 +144,8 @@ body {
         <nav class="navbar">
             <div class="navbar-links">
                 <a href="/login/view/home/admin.php">Inicio</a>
-                <div class="dropdown">
-                    <a href="" class="dropbtn">Cargar <i class="fas fa-caret-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="#">Libros</a>
-                        <a href="#">Revistas</a>
-                    </div>
-                </div>
-                <a href="/login/view/content/usuarios.php">Usuarios registrados</a>
+                <a href="/login/view/content/admin/formulario.php">Cargar Libro / Revista</a>
+                <a href="/login/view/content/admin/usuarios.php">Usuarios registrados</a>
                 <a href="#">Lista de préstamos</a>
                 <a href="#">Lista de devoluciones</a>
             </div>
@@ -166,3 +161,10 @@ body {
             </div>
         </nav>
     </header>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const navbarLinks = document.querySelector('.navbar-links');
+            navbarLinks.style.display = navbarLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>

@@ -90,16 +90,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/login/view/content/libros.php">Libros</a>
+                                <a class="nav-link active" aria-current="page" href="/login/view/content/user/libros.php">Libros</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/login/view/content/revistas.php">Revistas</a>
+                                <a class="nav-link active" aria-current="page" href="/login/view/content/user/revistas.php">Revistas</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/login/view/content/autor.php">Autor</a>
+                                <a class="nav-link active" aria-current="page" href="/login/view/content/user/autor.php">Autor</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/login/view/content/genero.php">Géneros</a>
+                                <a class="nav-link active" aria-current="page" href="/login/view/content/user/genero.php">Géneros</a>
                             </li>
                             <form class="d-flex" action="/login/view/search/results.php" method="GET">
                                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" id="searchInput" name="query">
