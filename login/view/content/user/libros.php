@@ -50,6 +50,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Lista de Libros</title>
     <style>
         /* Estilos CSS para la lista de libros */
@@ -58,7 +59,7 @@ try {
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin: 20px auto;
-            max-width: 1000px;
+            max-width: 1050px;
             background-color: #2b2e38; /* Color de fondo gris claro */
             padding: 10px; /* Añadido padding para espaciar el contenido del contenedor */
         }
@@ -74,6 +75,7 @@ try {
         }
         th {
             background-color: #1f2029;
+            color: #ffeba7;
         }
         tr:hover {
             background-color: #ffeba7; /* Color del texto inicial */
@@ -105,10 +107,30 @@ try {
             background-color: #ffeba7;
             color: #1f2029;
         }
+        .btn-solicitar-prestamo {
+    background-color: #ffeba7; /* Color de fondo del botón */
+    color: #1f2029; /* Color de las letras del botón */
+    padding: 8px 12px; /* Añadido padding para el botón */
+    border: none; /* Quita el borde del botón */
+    border-radius: 4px; /* Borde redondeado para el botón */
+    cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+    float: right; /* Alinea el botón a la derecha */
+    text-decoration: none; /* Elimina el subrayado del botón */
+    margin-top: 10px; /* Espacio entre el botón y el título */
+    font-size: 10px;
+}
+
+.btn-solicitar-prestamo:hover {
+    background-color: #1f2029; /* Color de fondo del botón al pasar el mouse */
+    color: #ffeba7; /* Color de las letras del botón al pasar el mouse */
+}
+
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Mensajes de alerta de Bootstrap -->
+        <div id="alert-container"></div>
         <h2>Lista de Libros</h2>
         <table>
             <tr>
@@ -123,11 +145,11 @@ try {
                     <td><?= $libro['genero'] ?></td>
                     <td><?= $libro['autor'] ?></td>
                     <td><?= $libro['editorial'] ?></td>
+                    <td><button class="btn-solicitar-prestamo" onclick="solicitarPrestamo(<?= $libro['id_libro'] ?>)">Solicitar Préstamo</button></td>
                 </tr>
             <?php endforeach; ?>
         </table>
     </div>
-    <!-- Paginación -->
     <div class="pagination-container">
         <div class="pagination">
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
@@ -135,5 +157,42 @@ try {
             <?php endfor; ?>
         </div>
     </div>
+    <!-- Incluir JavaScript de Bootstrap y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Función para mostrar alertas de Bootstrap
+        function mostrarAlerta(tipo, mensaje) {
+            const alertContainer = document.getElementById('alert-container');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${tipo} alert-dismissible fade show`;
+            alertDiv.role = 'alert';
+            alertDiv.innerHTML = `
+                ${mensaje}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            `;
+            alertContainer.appendChild(alertDiv);
+        }
+
+        // Mostrar mensajes de éxito o error si existen en la URL
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('success')) {
+                mostrarAlerta('success', urlParams.get('success'));
+            }
+            if (urlParams.has('error')) {
+                mostrarAlerta('danger', urlParams.get('error'));
+            }
+        }
+
+        function solicitarPrestamo(libroId) {
+            if (confirm("¿Estás seguro de que deseas solicitar este préstamo?")) {
+                window.location.href = `solicitar_prestamo.php?libro_id=${libroId}`;
+            }
+        }
+    </script>
 </body>
 </html>

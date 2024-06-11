@@ -106,7 +106,7 @@ try {
         <?php foreach ($autores as $autor): ?>
             <div class="autor">
                 <h2><?= htmlspecialchars($autor['nombre']) ?></h2>
-                <a href="/login/view/content/publicaciones.php?autor=<?= urlencode($autor['nombre']) ?>" class="btn-ver-lista" style="font-size: 10px;" >Ver Lista Completa</a>
+                <a href="/login/view/content/user/publicaciones.php?autor=<?= urlencode($autor['nombre']) ?>" class="btn-ver-lista" style="font-size: 10px;" >Ver Lista Completa</a>
                 <div style="clear:both;"></div> <!-- Limpiar flotantes -->
             </div>
         <?php endforeach; ?>

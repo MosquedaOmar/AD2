@@ -233,7 +233,6 @@ display: none;
                                                 <p id="error-msg" class="error-msg">Por favor complete todos los campos.</p>
                                                 <a href="/login/view/home/signup.php" class="btn mt-4">Registrarse</a>
                                                 <br>
-                                                <br>
                                                 <!-- Eliminar el mensaje de error original -->
                                                 <!-- <p class="error escondido">X Error al iniciar sesión X</p> -->
                                                 <p class="mb-0 mt-4 text-center"><a href="/login/view/recovery/recovery.php" class="link">¿Olvidó su contraseña?</a></p>
@@ -271,3 +270,4 @@ display: none;
         </div>
     </div>
 </main>
+

@@ -107,44 +107,81 @@ if ($conexion instanceof PDO) {
             </select><br>
             <input type="text" id="isbn" name="isbn" placeholder="Ingrese ISBN (opcional)"><br>
             <select type="text" id="genero" name="genero" placeholder="Genero" required>
-                <?php
-                // Conexión a la base de datos
-                require_once("c://xampp/htdocs/login/config/db.php");
-                $db = new db();
-                $conexion = $db->conexion();
-                // Consulta SQL para obtener géneros
-                $sql_generos = "SELECT id_genero, genero FROM genero";
-                $result_generos = $conexion->query($sql_generos);
-                // Iterar sobre los resultados y mostrar opciones
-                while ($row = $result_generos->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . $row['id_genero'] . "'>" . $row['nombre'] . "</option>";
-                }
-                ?>
+                <!-- Opciones de género se cargarán dinámicamente -->
             </select><br>
             <select type="text" id="autor" name="autor" placeholder="Autor" required>
-                <?php
-                // Consulta SQL para obtener autores
-                $sql_autores = "SELECT id_autor, nombre FROM autor";
-                $result_autores = $conexion->query($sql_autores);
-                // Iterar sobre los resultados y mostrar opciones
-                while ($row = $result_autores->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . $row['id_autor'] . "'>" . $row['nombre'] . "</option>";
-                }
-                ?>
+                <!-- Opciones de autor se cargarán dinámicamente -->
             </select><br>
             <select type="text" id="editorial" name="editorial" placeholder="Editorial" required>
-                <?php
-                // Consulta SQL para obtener editoriales
-                $sql_editoriales = "SELECT id_editorial, nombre FROM editorial";
-                $result_editoriales = $conexion->query($sql_editoriales);
-                // Iterar sobre los resultados y mostrar opciones
-                while ($row = $result_editoriales->fetch(PDO::FETCH_ASSOC)) {
-                    echo "<option value='" . $row['id_editorial'] . "'>" . $row['nombre'] . "</option>";
-                }
-                ?>
+                <!-- Opciones de editorial se cargarán dinámicamente -->
             </select><br>
             <input type="submit" value="Guardar">
         </form>
     </div>
+
+    <script>
+        // Función para cargar opciones de autor mientras escribes
+        document.getElementById('autor').addEventListener('input', function() {
+            var input = this.value;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    var select = document.getElementById('autor');
+                    select.innerHTML = '';
+                    data.forEach(function(option) {
+                        var el = document.createElement('option');
+                        el.textContent = option.nombre;
+                        el.value = option.id_autor;
+                        select.appendChild(el);
+                    });
+                }
+            };
+            xhr.open('GET', 'buscar_autor.php?q=' + input, true);
+            xhr.send();
+        });
+
+        // Función para cargar opciones de género mientras escribes
+        document.getElementById('genero').addEventListener('input', function() {
+            var input = this.value;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    var select = document.getElementById('genero');
+                    select.innerHTML = '';
+                    data.forEach(function(option) {
+                        var el = document.createElement('option');
+                        el.textContent = option.nombre;
+                        el.value = option.id_genero;
+                        select.appendChild(el);
+                    });
+                }
+            };
+            xhr.open('GET', 'buscar_genero.php?q=' + input, true);
+            xhr.send();
+        });
+
+        // Función para cargar opciones de editorial mientras escribes
+        document.getElementById('editorial').addEventListener('input', function() {
+            var input = this.value;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var data = JSON.parse(this.responseText);
+                    var select = document.getElementById('editorial');
+                    select.innerHTML = '';
+                    data.forEach(function(option) {
+                        var el = document.createElement('option');
+                        el.textContent = option.nombre;
+                        el.value = option.id_editorial;
+                        select.appendChild(el);
+                    });
+                }
+            };
+            xhr.open('GET', 'buscar_editorial.php?q=' + input, true);
+            xhr.send();
+        });
+    </script>
 </body>
 </html>

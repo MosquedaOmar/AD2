@@ -101,6 +101,9 @@
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="/login/view/content/user/genero.php">Géneros</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/login/view/content/user/estado_prestamo.php">Solicitud de prestamo</a>
+                            </li>
                             <form class="d-flex" action="/login/view/search/results.php" method="GET">
                                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" id="searchInput" name="query">
                             </form>

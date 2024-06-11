@@ -146,7 +146,8 @@ body {
                 <a href="/login/view/home/admin.php">Inicio</a>
                 <a href="/login/view/content/admin/formulario.php">Cargar Libro / Revista</a>
                 <a href="/login/view/content/admin/usuarios.php">Usuarios registrados</a>
-                <a href="#">Lista de préstamos</a>
+                <a href="/login/view/content/admin/solicitud_prestamo.php">Solicitud de préstamos</a>
+                <a href="/login/view/content/admin/lista_prestamos.php">Lista de préstamos</a>
                 <a href="#">Lista de devoluciones</a>
             </div>
             <div class="navbar-user">

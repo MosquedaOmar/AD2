@@ -1,17 +1,23 @@
 <?php
-require_once ('c://xampp/htdocs/login/view/content/sesionAdmin.php');
-require_once ('c://xampp/htdocs/login/config/db.php'); // Incluye el archivo de la clase db
+require_once('c://xampp/htdocs/login/view/content/sesionAdmin.php');
+require_once('c://xampp/htdocs/login/config/db.php');
 
 try {
     // Instanciamos la clase db
     $database = new db();
-    
+
     // Conexión a la base de datos
     $conn = $database->conexion();
 
+    // Eliminar solicitudes antiguas (más de 48 horas sin aceptar o rechazar)
+    $fecha_limite = date('Y-m-d H:i:s', strtotime('-48 hours'));
+    $stmt = $conn->prepare("DELETE FROM solicitud_prestamo WHERE fecha_solicitud < ? AND estado = 'pendiente'");
+    $stmt->bindParam(1, $fecha_limite, PDO::PARAM_STR);
+    $stmt->execute();
+
     // Paginación
-    $results_per_page = 10; // Número de usuarios por página
-    $sql = "SELECT COUNT(*) AS total FROM usuarios"; // Contar total de usuarios
+    $results_per_page = 10; // Número de solicitudes por página
+    $sql = "SELECT COUNT(*) AS total FROM solicitud_prestamo"; // Contar total de solicitudes
     $stmt = $conn->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     $total_results = $row['total'];
@@ -29,17 +35,20 @@ try {
     // Calcula el inicio del resultado de la consulta
     $start_limit = ($page - 1) * $results_per_page;
 
-    // Consulta SQL para obtener los usuarios por página
-    $sql = "SELECT u.*, a.Estado_Afiliacion FROM usuarios u 
-            LEFT JOIN Afiliados a ON u.id = a.id 
+    // Consulta SQL para obtener las solicitudes por página
+    $sql = "SELECT sp.*, u.usuario, l.titulo AS nombre_libro FROM solicitud_prestamo sp
+            INNER JOIN usuarios u ON sp.id_usuario = u.id
+            INNER JOIN libros l ON sp.id_libro = l.id_libro
             LIMIT $start_limit, $results_per_page";
     $stmt = $conn->query($sql);
-    $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $solicitudes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
+    // Agrega una salida para asegurarte de que $solicitudes esté definido incluso en caso de error
+    $solicitudes = array();
 }
-require_once("c://xampp/htdocs/login/view/head/headerAdmin.php");
 
+require_once("c://xampp/htdocs/login/view/head/headerAdmin.php");
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +56,8 @@ require_once("c://xampp/htdocs/login/view/head/headerAdmin.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Usuarios</title>
+    <title>Lista de Solicitudes de Préstamos</title>
+    <!-- Estilos CSS -->
     <style>
         /* Estilos CSS para la lista de usuarios */
         .container {
@@ -114,66 +124,58 @@ require_once("c://xampp/htdocs/login/view/head/headerAdmin.php");
             background-color: #ddd;
             border-radius: 5px;
         }
-
     </style>
-    <script>
-        function searchUsuarios() {
-            var input = document.getElementById('searchInput');
-            var filter = input.value.toLowerCase();
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById('usuariosTable').innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "buscar_usuarios.php?q=" + filter, true);
-            xhttp.send();
-        }
-    </script>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h2>Lista de Usuarios</h2>
-            <div class="search-bar">
-                <input type="text" id="searchInput" onkeyup="searchUsuarios()" placeholder="Buscar usuarios...">
-            </div>
+            <h2>Lista de Solicitudes de Préstamos</h2>
         </div>
         <table>
             <thead>
                 <tr>
-                    <th>Correo</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Telefono</th>
-                    <th>Nombre de Usuario</th>
-                    <th>Estado de Afiliado</th>
+                    <th>Libro</th>
+                    <th>Usuario</th>
+                    <th>Fecha de Solicitud</th>
+                    <th>Fecha de Aceptación</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody id="usuariosTable">
-                <?php foreach ($usuarios as $usuario): ?>
+            <tbody>
+                <?php foreach ($solicitudes as $solicitud): ?>
                     <tr>
-                        <td><?= $usuario['correo'] ?></td>
-                        <td><?= $usuario['nombre'] ?></td>
-                        <td><?= $usuario['apellido'] ?></td>
-                        <td><?= $usuario['telefono'] ?></td>
-                        <td><?= $usuario['usuario'] ?></td>
-                        <td><?= $usuario['Estado_Afiliacion'] ?></td>
+                        <td><?= $solicitud['nombre_libro'] ?></td>
+                        <td><?= $solicitud['usuario'] ?></td>
+                        <td><?= $solicitud['fecha_solicitud'] ?></td>
+                        <td><?= $solicitud['fecha_aceptacion'] ?></td>
+                        <td><?= $solicitud['estado'] ?></td>
                         <td>
-                            <form action="/login/view/home/afiliado.php" method="post">
-                                <input type="hidden" name="id_usuario" value="<?= $usuario['id'] ?>">
-                                <select name="estado_afiliacion">
-                                    <option value="Activo">Activo</option>
-                                    <option value="Inactivo">Inactivo</option>
+                            <!-- Formulario para aceptar o rechazar la solicitud de préstamo -->
+                            <form action="aceptar_rechazar_prestamo.php" method="post" style="display: inline-block;">
+                                <input type="hidden" name="id_solicitud" value="<?= $solicitud['id_solicitud'] ?>">
+                                <select name="accion">
+                                    <option value="aceptar">Aceptar</option>
+                                    <option value="rechazar">Rechazar</option>
                                 </select>
-                                <button type="submit">Actualizar</button>
+                                <button type="submit">Enviar</button>
                             </form>
+                            <!-- Formulario para cargar el préstamo -->
+                            <?php if ($solicitud['estado'] == 'aceptada'): ?>
+                                <form action="insertar_prestamo.php" method="post" style="display: inline-block;">
+                                        <input type="hidden" name="id_solicitud" value="<?= $solicitud['id_solicitud'] ?>">
+                                        <input type="hidden" name="id_libro" value="<?= $solicitud['id_libro'] ?>">
+                                        <input type="hidden" name="id_usuario" value="<?= $solicitud['id_usuario'] ?>">
+                                        <input type="hidden" name="fecha_solicitud" value="<?= $solicitud['fecha_solicitud'] ?>">
+                                        <button type="submit">Cargar Préstamo</button>
+                                </form>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <!-- Paginación -->
         <div class="pagination">
             <?php if ($page > 1): ?>
                 <a href="?page=<?= $page - 1 ?>">«</a>

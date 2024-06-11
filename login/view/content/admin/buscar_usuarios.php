@@ -26,12 +26,9 @@ if (isset($_GET['q'])) {
         if ($usuarios) {
             foreach ($usuarios as $usuario) {
                 echo "<tr>
-                        <td>{$usuario['id']}</td>
                         <td>{$usuario['correo']}</td>
                         <td>{$usuario['nombre']}</td>
                         <td>{$usuario['apellido']}</td>
-                        <td>{$usuario['dni']}</td>
-                        <td>{$usuario['fecha_nacimiento']}</td>
                         <td>{$usuario['telefono']}</td>
                         <td>{$usuario['usuario']}</td>
                         <td>{$usuario['Estado_Afiliacion']}</td>

@@ -74,6 +74,7 @@ try {
         }
         th {
             background-color: #1f2029;
+            color: #ffeba7;
         }
         tr:hover {
             background-color: #ffeba7; /* Color del texto inicial */
@@ -105,6 +106,23 @@ try {
             background-color: #ffeba7;
             color: #1f2029;
         }
+        .btn-solicitar-prestamo {
+            background-color: #ffeba7; /* Color de fondo del botón */
+            color: #1f2029; /* Color de las letras del botón */
+            padding: 8px 12px; /* Añadido padding para el botón */
+            border: none; /* Quita el borde del botón */
+            border-radius: 4px; /* Borde redondeado para el botón */
+            cursor: pointer; /* Cambia el cursor al pasar por encima del botón */
+            float: right; /* Alinea el botón a la derecha */
+            text-decoration: none; /* Elimina el subrayado del botón */
+            margin-top: 10px; /* Espacio entre el botón y el título */
+            font-size: 10px;
+        }
+
+        .btn-solicitar-prestamo:hover {
+            background-color: #1f2029; /* Color de fondo del botón al pasar el mouse */
+            color: #ffeba7; /* Color de las letras del botón al pasar el mouse */
+        }
     </style>
 </head>
 <body>
@@ -123,6 +141,7 @@ try {
                     <td><?= htmlspecialchars($revista['genero'], ENT_QUOTES, 'UTF-8') ?></td>
                     <td><?= htmlspecialchars($revista['autor'], ENT_QUOTES, 'UTF-8') ?></td>
                     <td><?= htmlspecialchars($revista['editorial'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><button class="btn-solicitar-prestamo" onclick="solicitarPrestamo(<?= $revista['id_libro'] ?>)">Solicitar Préstamo</button></td>
                 </tr>
             <?php endforeach; ?>
         </table>
@@ -135,5 +154,42 @@ try {
             <?php endfor; ?>
         </div>
     </div>
+        <!-- Incluir JavaScript de Bootstrap y jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Función para mostrar alertas de Bootstrap
+        function mostrarAlerta(tipo, mensaje) {
+            const alertContainer = document.getElementById('alert-container');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${tipo} alert-dismissible fade show`;
+            alertDiv.role = 'alert';
+            alertDiv.innerHTML = `
+                ${mensaje}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            `;
+            alertContainer.appendChild(alertDiv);
+        }
+
+        // Mostrar mensajes de éxito o error si existen en la URL
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('success')) {
+                mostrarAlerta('success', urlParams.get('success'));
+            }
+            if (urlParams.has('error')) {
+                mostrarAlerta('danger', urlParams.get('error'));
+            }
+        }
+
+        function solicitarPrestamo(libroId) {
+            if (confirm("¿Estás seguro de que deseas solicitar este préstamo?")) {
+                window.location.href = `solicitar_prestamo.php?libro_id=${libroId}`;
+            }
+        }
+    </script>
 </body>
 </html>

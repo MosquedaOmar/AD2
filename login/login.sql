@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2024 a las 05:10:49
+-- Tiempo de generación: 11-06-2024 a las 18:41:32
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -58,7 +58,10 @@ CREATE TABLE `afiliados` (
 
 INSERT INTO `afiliados` (`id_afiliado`, `id`, `Estado_Afiliacion`) VALUES
 (1, 8, 'Inactivo'),
-(2, 1, 'Activo');
+(2, 1, 'Activo'),
+(3, 9, 'Inactivo'),
+(4, 10, 'Inactivo'),
+(5, 12, 'Inactivo');
 
 -- --------------------------------------------------------
 
@@ -366,6 +369,20 @@ INSERT INTO `libros` (`id_libro`, `titulo`, `cantidad`, `id_tipo`, `isbn`, `id_g
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `expires` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `prestamos`
 --
 
@@ -374,8 +391,43 @@ CREATE TABLE `prestamos` (
   `id_usuario` int(11) NOT NULL,
   `id_libro` int(11) NOT NULL,
   `fecha_prestamo` date NOT NULL,
-  `fecha_devolucion` date DEFAULT NULL
+  `fecha_devolucion` date DEFAULT NULL,
+  `id_solicitud` int(11) DEFAULT NULL,
+  `fecha_solicitud` datetime DEFAULT NULL,
+  `estado` enum('pendiente','devuelto','no_devuelto') DEFAULT 'pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `prestamos`
+--
+
+INSERT INTO `prestamos` (`id_prestamo`, `id_usuario`, `id_libro`, `fecha_prestamo`, `fecha_devolucion`, `id_solicitud`, `fecha_solicitud`, `estado`) VALUES
+(25, 8, 1, '2024-06-11', NULL, 8, '2024-06-06 21:38:40', 'pendiente'),
+(26, 8, 36, '2024-06-11', NULL, 9, '2024-06-07 00:15:54', 'pendiente');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitud_prestamo`
+--
+
+CREATE TABLE `solicitud_prestamo` (
+  `id_solicitud` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_libro` int(11) NOT NULL,
+  `fecha_solicitud` datetime NOT NULL,
+  `fecha_aceptacion` datetime DEFAULT NULL,
+  `estado` enum('pendiente','aceptada','rechazada') NOT NULL DEFAULT 'pendiente'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `solicitud_prestamo`
+--
+
+INSERT INTO `solicitud_prestamo` (`id_solicitud`, `id_usuario`, `id_libro`, `fecha_solicitud`, `fecha_aceptacion`, `estado`) VALUES
+(8, 8, 1, '2024-06-06 21:38:40', '2024-06-10 05:49:12', 'aceptada'),
+(9, 8, 36, '2024-06-07 00:15:54', '2024-06-11 16:37:01', 'aceptada'),
+(10, 8, 4, '2024-06-10 05:22:26', NULL, 'pendiente');
 
 -- --------------------------------------------------------
 
@@ -420,7 +472,10 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `correo`, `password`, `nombre`, `apellido`, `dni`, `telefono`, `fecha_nacimiento`, `usuario`) VALUES
 (1, 'leandro@hotmail.com', '$2y$10$hz4fz4FcTO012xuGckWr8uze.6mhWmn12rH.Qquk/LtMawX9IKe0y', 'Leandro', 'andrew', '23540430', '3704544564', '0000-00-00', 'Lean29'),
-(8, 'omar@hotmail.com', '$2y$10$A/nIdwqxKyXQz7p/03AukOScgWH9fWnrPpZJ8XNot6J//RLp09PLa', 'Omar', 'Mosqueda', '39721640', '3704650413', '1996-08-13', 'Mosqueda23');
+(8, 'omar@hotmail.com', '$2y$10$A/nIdwqxKyXQz7p/03AukOScgWH9fWnrPpZJ8XNot6J//RLp09PLa', 'Omar', 'Mosqueda', '39721640', '3704650413', '1996-08-13', 'Mosqueda23'),
+(9, 'Andres@hotmail.com', '$2y$10$afh1TC7iVfHde78pwYe.I.zuGo0Vk/hHE4sFZ/zVGP1JBklEPMkua', 'Andres', 'Andrew', '23789675', '3704655612', '2000-05-11', 'AndreDrews'),
+(10, 'Angel@hotmail.com', '$2y$10$csYMO9jqRoGlS0kpn3lXXerWbDS2QBqVjQaLpfKpdZSWo1xCgAcnC', 'Angel', 'Lopez', '23657657', '3704122324', '2001-02-08', 'AngeLz'),
+(12, 'omarthemostwanted@hotmail.com', '$2y$10$glnLAyESHXXVI/ppG3pyPuTTLlf3tSvnG6bw8F3mPqfgpVDN1Ni5y', 'Hernandez', 'Paredez', '23987878', '2398777898', '1992-06-10', 'Hernan23');
 
 --
 -- Disparadores `usuarios`
@@ -500,10 +555,25 @@ ALTER TABLE `libros`
   ADD KEY `id_editorial` (`id_editorial`);
 
 --
+-- Indices de la tabla `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indices de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
   ADD PRIMARY KEY (`id_prestamo`),
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_libro` (`id_libro`);
+
+--
+-- Indices de la tabla `solicitud_prestamo`
+--
+ALTER TABLE `solicitud_prestamo`
+  ADD PRIMARY KEY (`id_solicitud`),
   ADD KEY `id_usuario` (`id_usuario`),
   ADD KEY `id_libro` (`id_libro`);
 
@@ -535,7 +605,7 @@ ALTER TABLE `administradores`
 -- AUTO_INCREMENT de la tabla `afiliados`
 --
 ALTER TABLE `afiliados`
-  MODIFY `id_afiliado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_afiliado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `autor`
@@ -580,10 +650,22 @@ ALTER TABLE `libros`
   MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
+-- AUTO_INCREMENT de la tabla `password_resets`
+--
+ALTER TABLE `password_resets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT de la tabla `solicitud_prestamo`
+--
+ALTER TABLE `solicitud_prestamo`
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo`
@@ -595,7 +677,7 @@ ALTER TABLE `tipo`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
@@ -635,11 +717,24 @@ ALTER TABLE `libros`
   ADD CONSTRAINT `libros_ibfk_4` FOREIGN KEY (`id_editorial`) REFERENCES `editorial` (`id_editorial`);
 
 --
+-- Filtros para la tabla `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD CONSTRAINT `password_resets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usuarios` (`id`);
+
+--
 -- Filtros para la tabla `prestamos`
 --
 ALTER TABLE `prestamos`
   ADD CONSTRAINT `prestamos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
   ADD CONSTRAINT `prestamos_ibfk_2` FOREIGN KEY (`id_libro`) REFERENCES `libros` (`id_libro`);
+
+--
+-- Filtros para la tabla `solicitud_prestamo`
+--
+ALTER TABLE `solicitud_prestamo`
+  ADD CONSTRAINT `fk_libro` FOREIGN KEY (`id_libro`) REFERENCES `libros` (`id_libro`),
+  ADD CONSTRAINT `fk_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

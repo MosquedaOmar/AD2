@@ -114,7 +114,7 @@ try {
         <?php foreach ($generos as $genero): ?>
             <div class="genero">
                 <h2><?= htmlspecialchars($genero['nombre']) ?></h2>
-                <a href="/login/view/content/publicacionesInfo.php?genero=<?= urlencode($genero['nombre']) ?>" class="btn-ver-lista" style="font-size: 10px;">Ver Lista Completa</a>
+                <a href="/login/view/content/user/publicacionesInfo.php?genero=<?= urlencode($genero['nombre']) ?>" class="btn-ver-lista" style="font-size: 10px;">Ver Lista Completa</a>
             </div>
         <?php endforeach; ?>
     </div>
